@@ -1,1 +1,1 @@
-Backend: api.glukhovon.students.nomoreparties.space
+Backend: https://api.glukhovon.students.nomoreparties.space/
