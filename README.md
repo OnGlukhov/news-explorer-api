@@ -1,1 +1,1 @@
-# news-explorer-api
+Backend: api.glukhovon.students.nomoreparties.space
