@@ -6,7 +6,7 @@ const { ARTICLE_NOT_FOUND, OWNER_ERROR, ARTICLE_REMOVE } = require('../utils/con
 
 // Получение всех карточек
 const getArticle = (req, res, next) => {
-  Article.find({})
+  Article.find({ owner: req.user._id })
     .then((articles) => res.send(articles))
     .catch(next);
 };
@@ -31,7 +31,16 @@ const createArticle = (req, res, next) => {
     image,
     owner: req.user._id,
   })
-    .then((article) => res.send(article))
+    .then((article) => res.send({
+      _id: article._id,
+      keyword: article.keyword,
+      title: article.title,
+      text: article.text,
+      date: article.date,
+      source: article.source,
+      link: article.link,
+      image: article.image,
+    }))
     .catch((err) => {
       if (err.name === 'BadRequestError') {
         next(new BadRequestError(err.message));

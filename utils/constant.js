@@ -8,6 +8,10 @@ const SERVER_ERROR = 'На сервере произошла ошибка';
 const REQUIRED_AUTHORIZATION = 'Необходима авторизация';
 const INCORRECT_DATA = 'Неправильные почта или пароль';
 const NOT_FOND_ERROR = 'Запрашиваемый ресурс не найден';
+const USER_IS_REGISTERED = 'Зарегистрирован пользователь';
+const INCORRECT_EMAIL = 'Неправильный формат почты';
+const INVALID_LINK = 'Некорректная ссылка';
+const REQUEST_LIMIT = 'Повторите запрос позже';
 
 module.exports = {
   USER_REGISTERED,
@@ -19,4 +23,8 @@ module.exports = {
   REQUIRED_AUTHORIZATION,
   INCORRECT_DATA,
   NOT_FOND_ERROR,
+  USER_IS_REGISTERED,
+  INCORRECT_EMAIL,
+  INVALID_LINK,
+  REQUEST_LIMIT,
 };

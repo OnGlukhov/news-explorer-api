@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const { SERVER_ERROR } = require('../utils/constant');
 
 const centralizedErrorHandler = ((err, req, res, next) => {

@@ -1,10 +1,10 @@
-const { NODE_ENV, JWT_SECRET } = process.env;
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 const ConflictError = require('../errors/ConflictError');
 const NotFoundError = require('../errors/NotFoundError');
-const { USER_REGISTERED, USER_NOT_FOUND } = require('../utils/constant');
+const { USER_REGISTERED, USER_NOT_FOUND, USER_IS_REGISTERED } = require('../utils/constant');
+const { JWT_KEY } = require('../utils/config');
 
 // Регистрация
 const createUser = (req, res, next) => {
@@ -25,8 +25,10 @@ const createUser = (req, res, next) => {
           password: hash,
           name,
         }))
-        // eslint-disable-next-line no-shadow
-        .then((user) => res.send({ message: `Зарегистрирован пользователь ${user.email}` }));
+        .then((data) => {
+          res.send({ message: `${USER_IS_REGISTERED} ${data.email}` });
+        })
+        .catch(next);
     })
     .catch(next);
 };
@@ -39,7 +41,7 @@ const login = (req, res, next) => {
       res.send({
         token: jwt.sign(
           { _id: user._id },
-          NODE_ENV === 'production' ? JWT_SECRET : 'dev-secret',
+          JWT_KEY,
           { expiresIn: '7d' },
         ),
       });

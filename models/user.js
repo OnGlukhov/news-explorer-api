@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const isEmail = require('validator/lib/isEmail');
 const AuthorizationError = require('../errors/AuthorizationError');
-const { INCORRECT_DATA } = require('../utils/constant');
+const { INCORRECT_DATA, INCORRECT_EMAIL } = require('../utils/constant');
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -10,7 +10,7 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
     validate: {
-      validator: (v) => isEmail(v), message: 'Неправильный формат почты',
+      validator: (v) => isEmail(v), message: INCORRECT_EMAIL,
     },
   },
   password: {
@@ -26,7 +26,6 @@ const userSchema = new mongoose.Schema({
   },
 }, { versionKey: false });
 
-// eslint-disable-next-line func-names
 userSchema.statics.findUserByCredentials = function (email, password) {
   // попытаемся найти пользователя по почте
   return this.findOne({ email }).select('+password')

@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
 const users = require('./users');
@@ -10,9 +9,10 @@ const { NOT_FOND_ERROR } = require('../utils/constant');
 
 router.post('/signup', celebrate({
   body: Joi.object().keys({
+    name: Joi.string().required().min(2).max(30),
     email: Joi.string().required().email(),
     password: Joi.string().required().min(8),
-  }).unknown(true),
+  }),
 }), createUser);
 
 router.post('/signin', celebrate({
