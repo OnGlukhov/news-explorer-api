@@ -51,7 +51,7 @@ const createArticle = (req, res, next) => {
 };
 // Удаление карточки
 const deleteArticle = (req, res, next) => {
-  Article.findById(req.params.articleId)
+  Article.findById(req.params.articleId).select('+owner')
     .then((article) => {
       if (!article) {
         throw new NotFoundError(ARTICLE_NOT_FOUND);

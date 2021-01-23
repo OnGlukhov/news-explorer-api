@@ -1,4 +1,3 @@
-/* eslint-disable linebreak-style */
 const USER_REGISTERED = 'Пользователь уже зарегистрирован';
 const USER_NOT_FOUND = 'Нет такого пользователя';
 const ARTICLE_NOT_FOUND = 'Статья не найдена';
