@@ -1,1 +1,1 @@
-# news-explorer-api
+Бэкенд: https://api.onglukhov.students.nomoreparties.xyz
